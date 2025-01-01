@@ -4,7 +4,7 @@ const axios = require('axios')
 
 class Bot {
   constructor() {
-    this.baseUrl = process.env.BASE_URL
+    this.baseUrl = process.env.APP_API_URL
     this.joinedChannelIds = []
 
     this.api = axios.create({

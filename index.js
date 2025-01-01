@@ -15,30 +15,15 @@ const channel = pusher.subscribe(roomId)
 channel.bind('new-message', async data => {
   switch (data.content) {
     case '*meeting help':
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve()
-        }, 2000)
-      })
-      Bot.sendMessage(
-        roomId,
-        `*meeting now: tạo một phòng họp ngay lập tức;
-        \n
-        *meeting schedule: lên lịch tạo một phòng họp`,
-      )
+      await new Promise(resolve => setTimeout(() => resolve(), 300))
+      Bot.sendMessage(roomId, `*meeting now: tạo một phòng họp ngay lập tức`)
       break
     case '*meeting now':
       const rooms = await Bot.getMeetingChannel()
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve()
-        }, 1500)
-      })
-      Bot.sendMessage(roomId, `/channels/${channelId}/${rooms[0]}`)
+      await new Promise(resolve => setTimeout(() => resolve(), 300))
+      const content = `Hãy vào phòng: <a href='/channels/${channelId}/${rooms[0]}'}>Link</a>`
+      Bot.sendMessage(roomId, content)
       break
-    // case '*metting schedule':
-    //     //Lên lịch meeting
-    //     break;
   }
 })
 
